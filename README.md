@@ -1,2 +1,2 @@
-Fuck me£¡
+Fuck me!
 # strange
