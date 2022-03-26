@@ -11,29 +11,22 @@ int main(void)
         switch(b)
         {
             case '{':
-            case '}':
             case '[':
+            case '(':{q:a[rear]=b;rear++;break;}
+            case '}':
             case ']':
-            case '(':
-            case ')':{a[rear]=b;rear++;break;}
+            case ')':{if((b-a[rear-1])==1||(b-a[rear-1])==2){rear--;break;}else{goto q;}}
             case '\n':goto k;
         }
     }
-    k:if(rear%2)
+    k:if(head!=rear)
     {
         printf("¿®∫≈≤ª≈‰∂‘\n");
         return 1;
     }
-    while(rear!=head&&(rear-head)!=1)
+    else
     {
-        rear--;
-        if((a[rear]-a[head])!=2&&(a[rear]-a[head])!=1)
-        {
-            printf("¿®∫≈≤ª≈‰∂‘\n");
-            return 1;
-        }
-        head++;
+        printf("¿®∫≈≈‰∂‘\n");
+        return 0;
     }
-    printf("¿®∫≈≈‰∂‘\n");
-    return 0;
 }
