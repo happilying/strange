@@ -89,7 +89,7 @@ int PanDuan(char a,char b)
 int main(void)
 {
     char a;
-    int b,c=0,flag=1;;
+    int c=0;
     PNUM num;
     PCAL cal;
     num=createnum(-1);
