@@ -82,7 +82,7 @@ int PanDuan(char a,char b)
         {
             return 0;
         }
-        case '=':return 1;
+        case '#':return 1;
         case '(':return 0;
     }
 }
@@ -97,7 +97,7 @@ int main(void)
     while(1)
     {
         scanf("%c",&a);
-        flag=1;
+        if(a=='=')a='#';
         if(a>='0'&&a<='9')
         {
             c=c*10+(int)(a-'0');
@@ -142,14 +142,33 @@ int main(void)
                         break;
                     }
                 }
-                if(a==')'){OutCal(&cal);}
-                else if(a!='='){PushCal(a,&cal);flag=0;}
-                if(a=='=')if(cal->cal!='#')goto k;
-                else break;
+                switch(a)
+                {
+                    case ')':
+                    {
+                        if(cal->cal!='(')goto k;
+                        else OutCal(&cal);
+                        break;
+                    }
+                    case '#':
+                    {
+                        if(cal->cal=='#')
+                        {
+                            printf("计算结果是:%d\n",num->num);
+                            return 0;
+                        }
+                        else goto k;
+                    }
+                    default :
+                    {
+                        PushCal(a,&cal);
+                    }
+                }
             }
-            if(a!=')'&&flag)PushCal(a,&cal);
+            else
+            {
+                PushCal(a,&cal);
+            }
         }
     }
-    printf("%d",num->num);
-    return 0;
 }
