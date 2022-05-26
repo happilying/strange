@@ -51,9 +51,25 @@ void AfTrR(POINTS T)
         printf("%c ",T->data);
     }
 }
-void cengxu(POINT T)
+void cengxu(POINTS T)
 {
-    
+    POINTS dui[100],t;
+    int front=0;
+    int rear=-1;
+    dui[++rear]=T;
+    while(rear>=front)
+    {
+        t=dui[front++];
+        printf("%c ",t->data);
+        if(t->left)
+        {
+            dui[++rear]=t->left;
+        }
+        if(t->right)
+        {
+            dui[++rear]=t->right;
+        }
+    }
 }
 int main(void)
 {
@@ -84,6 +100,8 @@ int main(void)
     InTrR(head);
     printf("\n后序遍历结果：");
     AfTrR(head);
+    printf("\n层序遍历结果：");
+    cengxu(head);
     printf("\n");
     return 0;
 }
