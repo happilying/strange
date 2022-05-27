@@ -1,6 +1,6 @@
 #include<stdio.h>
 #define length 10
-int a[10001];
+int a[length+1];
 void charu(void) //插入排序函数
 {
     int j;
