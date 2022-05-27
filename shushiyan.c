@@ -90,7 +90,7 @@ int main(void)
                 p=p->front;
             }
             continue;
-        }
+        } //处理#情况
         if(a!='#')p=insertpoint(a,p,c);
         c=0;
     }
