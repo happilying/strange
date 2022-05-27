@@ -1,7 +1,7 @@
 #include<stdio.h>
 #define length 10
 int a[10001];
-void charu(void)
+void charu(void) //插入排序函数
 {
     int j;
     for(register int i=2;i<=length;i++)
@@ -17,7 +17,7 @@ void charu(void)
         }
     }
 }
-void kfen(int low1,int high1)
+void kfen(int low1,int high1) //快速排序递归函数体
 {
     int low=low1;
     int high=high1;
@@ -40,11 +40,11 @@ void kfen(int low1,int high1)
         kfen(low+1,high1);
     }
 }
-void kuaisu(void)
+void kuaisu(void) //快速排序函数
 {
     kfen(1,length);
 }
-void xuanze(void)
+void xuanze(void) //选择排序函数
 {
     for(register int i=1;i<length;i++)
     {
@@ -69,7 +69,7 @@ int main(void)
     {
         scanf("%d",&a[i]);
     }
-    switch (m)
+    switch (m) //根据输入选择排序方法
     {
         case 1:{charu();break;}
         case 2:{kuaisu();break;}
