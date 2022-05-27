@@ -5,14 +5,14 @@ typedef struct points
     struct points *front,*left,*right;
     char data;
 } POINT,*POINTS;
-POINTS createpoint(char datas)
+POINTS createpoint(char datas) //创建节点函数
 {
     POINTS p;
     p=(POINTS)malloc(sizeof(POINT));
     p->data=datas;p->front=p->left=p->right=NULL;
     return p;
 }
-POINTS insertpoint(char datas,POINTS q,int directions)
+POINTS insertpoint(char datas,POINTS q,int directions) //插入结点函数
 {
     POINTS r;
     r=createpoint(datas);
@@ -24,7 +24,7 @@ POINTS insertpoint(char datas,POINTS q,int directions)
     r->front=q;
     return r;
 }
-void Preorder (POINTS T)
+void Preorder (POINTS T) //先序遍历函数
 {
     if (T) 
     {
@@ -33,7 +33,7 @@ void Preorder (POINTS T)
         Preorder(T->right);// 遍历右子树
     }
 }
-void InTrR(POINTS T)
+void InTrR(POINTS T) //中序遍历函数
 {
     if (T) 
     { 
@@ -42,7 +42,7 @@ void InTrR(POINTS T)
         InTrR(T->right);
     }
 }
-void AfTrR(POINTS T)
+void AfTrR(POINTS T) //后序遍历函数
 {
     if (T) 
     { 
@@ -51,7 +51,7 @@ void AfTrR(POINTS T)
         printf("%c ",T->data);
     }
 }
-void cengxu(POINTS T)
+void cengxu(POINTS T) //层序遍历函数
 {
     POINTS dui[100],t;
     int front=0;

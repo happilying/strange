@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 typedef struct num
 {
     int num;
@@ -10,7 +11,7 @@ typedef struct cal
     char cal;
     struct cal *next;
 }CAL,*PCAL;
-PNUM createnum(int data)
+PNUM createnum(int data) //创建数字栈
 {
     PNUM s;
     s=(PNUM)malloc(sizeof(NUM));
@@ -18,7 +19,7 @@ PNUM createnum(int data)
     s->next=NULL;
     return s;
 }
-PCAL createcal(char data)
+PCAL createcal(char data) //创建符号栈
 {
     PCAL s;
     s=(PCAL)malloc(sizeof(CAL));
@@ -26,44 +27,45 @@ PCAL createcal(char data)
     s->next=NULL;
     return s;
 }
-void PushNum(int data,PNUM *s)
+void PushNum(int data,PNUM *s) //将数据写入数字栈
 {
     PNUM p;
     p=createnum(data);
     p->next=(*s);
     (*s)=p;
 }
-void PushCal(char data,PCAL *s)
+void PushCal(char data,PCAL *s) //将数据写入符号栈
 {
     PCAL p;
     p=createcal(data);
     p->next=(*s);
     (*s)=p;
 }
-void OutNum(PNUM *s)
+void OutNum(PNUM *s) //移除数字栈栈顶
 {
     PNUM p;
     p=(*s)->next;
     free(*s);
     (*s)=p;
 }
-void OutCal(PCAL *s)
+void OutCal(PCAL *s) //移除符号栈栈顶
 {
     PCAL p;
     p=(*s)->next;
     free(*s);
     (*s)=p;
 }
-int PanDuan(char a,char b)
+int PanDuan(char a,char b) //对两个符号进行大小判断
 {
     if(a=='#')return 0;
     switch(b)
     {
         case ')':return 1;
+        case '^':
         case '*':
         case '/':
         {
-            if(a=='*'||a=='/')
+            if(a=='*'||a=='/'||a=='^')
             {
                 return 1;
             }
@@ -74,7 +76,7 @@ int PanDuan(char a,char b)
         }
         case '+':
         case '-':
-        if(a=='*'||a=='/')
+        if(a=='*'||a=='/'||a=='^')
         {
             return 1;
         }
@@ -98,7 +100,7 @@ int main(void)
     {
         scanf("%c",&a);
         if(a=='=')a='#';
-        if(a>='0'&&a<='9')
+        if(a>='0'&&a<='9') //实现多位数输入
         {
             c=c*10+(int)(a-'0');
         }
@@ -111,7 +113,7 @@ int main(void)
             c=0;
             k:if(PanDuan(cal->cal,a))
             {
-                switch(cal->cal)
+                switch(cal->cal) //根据符号类型，分别进行运算操作
                 {
                     case '+':
                     {
@@ -141,8 +143,15 @@ int main(void)
                         OutCal(&cal);
                         break;
                     }
+                    case '^':
+                    {
+                        num->next->num=pow(num->next->num,num->num);
+                        OutNum(&num);
+                        OutCal(&cal);
+                        break;
+                    }
                 }
-                switch(a)
+                switch(a) //根据符号判断是否继续运算或输出结果
                 {
                     case ')':
                     {
