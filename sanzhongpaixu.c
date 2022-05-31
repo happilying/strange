@@ -4,16 +4,16 @@ int a[length+1];
 void charu(void) //插入排序函数
 {
     int j;
-    for(register int i=2;i<=length;i++)
+    for(register int i=2;i<=length;i++) //遍历数字
     {
         if(a[i]<a[i-1])
         {
-            a[0]=a[i];
-            for(j=i-1;a[0]<a[j];j--)
+            a[0]=a[i];//设置备份
+            for(j=i-1;a[0]<a[j];j--) //后移
             {
                 a[j+1]=a[j];
             }
-            a[j+1]=a[0];
+            a[j+1]=a[0];//覆盖
         }
     }
 }
