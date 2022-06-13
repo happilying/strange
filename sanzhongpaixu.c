@@ -1,6 +1,14 @@
 #include<stdio.h>
 #define length 10
 int a[length+1];
+void print(int m)
+{
+    for(register int i=m;i<=length;i++)
+    {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+}
 void charu(void) //插入排序函数
 {
     int j;
@@ -15,6 +23,7 @@ void charu(void) //插入排序函数
             }
             a[j+1]=a[0];//覆盖
         }
+        print(0);
     }
 }
 void kfen(int low1,int high1) //快速排序递归函数体
@@ -34,6 +43,7 @@ void kfen(int low1,int high1) //快速排序递归函数体
             while(low<high&&a[low]<=key)
             low++;
             a[high]=a[low];
+            print(0);
         }
         a[low]=a[0];
         kfen(low1,low-1);
@@ -59,6 +69,7 @@ void xuanze(void) //选择排序函数
             a[j]=a[i];
             a[i]=a[0];
         }
+        print(0);
     }
 }
 int main(void)
@@ -76,10 +87,6 @@ int main(void)
         case 3:{xuanze();break;}
         default:{printf("ERROR\n");return 1;}
     }
-    for(register int i=1;i<=length;i++)
-    {
-        printf("%d ",a[i]);
-    }
-    printf("\n");
+    print(1);
     return 0;
 }
