@@ -1,7 +1,7 @@
 #include<stdio.h>
 #define length 10
 int a[length+1];
-void print(int m)
+void print(int m) //输出函数
 {
     for(register int i=m;i<=length;i++)
     {
